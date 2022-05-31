@@ -1,0 +1,51 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/Values/test",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7287
+        }
+      ],
+      "UpstreamPathTemplate": "/test1",
+      "UpstreamHttpMethod": ["Get"],
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "2s",
+        "PeriodTimespan": 1,
+        "Limit": 1
+      },
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 1,
+        "DurationOfBreak": 20000,
+        "TimeoutValue": 5000
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/values",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/test2",
+      "UseServiceDiscovery": true,
+      "ServiceName": "service-a",
+      "UpstreamHttpMethod": ["Get"],
+      //"FileCacheOptions": { "TtlSeconds": 15 },
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Key",
+        "AllowedScopes": []
+      }
+    }
+   
+  ],
+  "GlobalConfiguration":
+  {
+    "RequestIdKey": "OcRequestId",
+    "AdministrationPath": "/administration",
+    "ServiceDiscoveryProvider": { "Type": "Eureka" }
+  }
+}
