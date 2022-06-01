@@ -1,3 +1,3 @@
 # api-gateway
 
-api gateway using Ocelot , service discovery(Eureka) and Keycloak for authentication
+api gateway using Ocelot and service discovery(Eureka)
